@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Color Group Mapping Generator</title>
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <header>
+          <h1>Color Group Mapping Generator</h1>
+        </header>
+
+        <!-- DROPZONE -->
+        <label id="drop" class="upload-box" for="fileInput" tabindex="0">
+          <strong>Chọn hoặc kéo thả file sản phẩm (.xlsx)</strong>
+          <div class="muted">
+            File xuất từ Shopify, cần có <code>Variant SKU</code> và
+            <code>Body (HTML)</code>
+          </div>
+        </label>
+        <input id="fileInput" type="file" accept=".xlsx,.xls" />
+
+        <!-- ACTION BUTTONS -->
+        <div class="actions">
+          <button id="processBtn" class="btn btn-primary">
+            Tạo Group_Mapping.xlsx
+          </button>
+          <button id="clearBtn" class="btn btn-outline">
+            Xóa file đã chọn
+          </button>
+        </div>
+
+        <div class="meta" id="meta">
+          Chưa có file. Vui lòng chọn file *.xlsx
+        </div>
+
+        <div class="note">
+          <p>Lưu ý:</p>
+          <p>
+            Dòng 1 mỗi BST chỉ có <strong>Group ID</strong> +
+            <strong>Group Name</strong>.
+          </p>
+          <p>
+            Dòng 2 chứa
+            <strong
+              >Group ID, Option ID, Option Name, Style On Page, Style On
+              Card</strong
+            >.
+          </p>
+          <p>Dòng 3 trở đi: thông tin từng màu sắc.</p>
+        </div>
+
+        <footer>Designed by <span class="designer">GiaQuyenVan</span></footer>
+      </div>
+    </div>
+
+    <!-- XLSX LIB -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- JS APP -->
+    <script src="app.js"></script>
+  </body>
+</html>
