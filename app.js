@@ -47,10 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function extractModelName(title) {
-        if (!title) return "";
+        if (!title) return "UnknownModel";
         const parts = title.trim().split(" ");
-        return parts[parts.length - 1]; // chữ cuối cùng của Title
+        return parts[parts.length - 1] || "UnknownModel";
     }
+
 
     processBtn.addEventListener("click", function () {
         if (!productWorkbook) {
@@ -74,9 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Xác định số ký tự để lấy làm prefix theo Vendor
             let prefixLength = 5; // mặc định
+            debugger;
             if (["VERSACE", "FERRAGAMO"].includes(vendor)) prefixLength = 4;
-            else if (["PHILIPP PLEIN", "GUESS", "VERSUS BY VERSACE"].includes(vendor)) prefixLength = 5;
-            else if (["TED BAKER", "MISSONI"].includes(vendor)) prefixLength = 6;
+            else if (["PHILIPP PLEIN", "VERSUS BY VERSACE"].includes(vendor)) prefixLength = 5;
+            else if (["TED BAKER", "MISSONI", "GUESS"].includes(vendor)) prefixLength = 6;
             else if (vendor === "FURLA") prefixLength = 10;
             else if (vendor === "LOCMAN") prefixLength = 8;
 
@@ -112,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Tạo output, bỏ qua nhóm có <2 mẫu
         Object.keys(groups).forEach(prefix => {
             const g = groups[prefix];
-            if (g.models.size < 2) return; // bỏ qua nhóm chỉ có 1 mẫu
+            // if (g.models.size < 2) return; // bỏ qua nhóm chỉ có 1 mẫu
 
             // Dòng 1
             output.push({
