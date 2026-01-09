@@ -31,19 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function extractColor(bodyHtml) {
-        if (!bodyHtml) return "Chưa có";
-        const lowered = bodyHtml.toLowerCase();
-        const COLOR_MAP = [
-            "đen", "nâu", "xám", "xanh", "đỏ", "vàng", "vàng hồng",
-            "bạc", "trắng", "hồng", "tím", "cam", "be", "navi", "navy", "trắng có", "cam", "xanh rêu", "xanh lá"
-        ];
-        for (let c of COLOR_MAP) {
-            if (lowered.includes(c)) return capitalize(c);
-        }
-        return "Chưa có";
-    }
-
     function capitalize(text) {
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
@@ -63,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const sheet = productWorkbook.Sheets[productWorkbook.SheetNames[0]];
         const rows = XLSX.utils.sheet_to_json(sheet);
-
         const groups = {};
 
         // Gom nhóm theo prefix SKU
@@ -74,8 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const vendor = (row["Vendor"] || "").toString().trim().toUpperCase();
 
-            // Xác định số ký tự để lấy làm prefix theo Vendor
-            let prefixLength = 5; // mặc định
+            // Xác định số ký tự prefix theo Vendor
+            let prefixLength = 5;
             if (["VERSACE", "FERRAGAMO"].includes(vendor)) prefixLength = 4;
             else if (["PHILIPP PLEIN", "VERSUS BY VERSACE"].includes(vendor)) prefixLength = 5;
             else if (["MISSONI", "GUESS"].includes(vendor)) prefixLength = 6;
@@ -88,28 +74,29 @@ document.addEventListener("DOMContentLoaded", function () {
             const optionId = skuPrefix;
             const modelName = extractModelName(row["Title"]);
             const groupName = `${vendor}-${skuPrefix}-${modelName}`;
-            const color = extractColor(row["Body (HTML)"]);
+
+            // ✅ LẤY MÀU DÂY (STRING)
+            const strapColor =
+                (row["Màu dây (product.metafields.custom.m_u_d_y)"] || "").toString().trim();
+
+            if (!strapColor) return; // không có màu → bỏ
 
             if (!groups[skuPrefix]) {
                 groups[skuPrefix] = {
                     groupId: skuPrefix,
                     optionId: optionId,
                     groupName: groupName,
-                    values: [],
-                    models: new Set()
+                    values: []
                 };
             }
 
             groups[skuPrefix].values.push({
                 productId: productId,
-                color: color,
+                color: capitalize(strapColor),
                 modelName: modelName,
                 sku: sku
             });
-            groups[skuPrefix].models.add(modelName);
         });
-
-
 
         const output = [];
 
