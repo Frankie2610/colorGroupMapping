@@ -1,4 +1,5 @@
-const exportTypeSelect = document.getElementById("exportType");
+const exportType =
+    document.querySelector('input[name="exportType"]:checked')?.value || "xlsx";
 document.addEventListener("DOMContentLoaded", function () {
     const productInput = document.getElementById("fileInput");
     const processBtn = document.getElementById("processBtn");
@@ -175,10 +176,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Xuất file
         // Xuất file theo định dạng được chọn
-        const exportType = exportTypeSelect?.value || "xlsx";
+        // Xuất file theo định dạng được chọn (RADIO)
+        const exportType =
+            document.querySelector('input[name="exportType"]:checked')?.value || "xlsx";
 
         if (exportType === "csv") {
-            // CSV
             const ws = XLSX.utils.json_to_sheet(output, { skipHeader: false });
             const csv = XLSX.utils.sheet_to_csv(ws);
 
@@ -194,12 +196,12 @@ document.addEventListener("DOMContentLoaded", function () {
             URL.revokeObjectURL(url);
 
         } else {
-            // XLSX (mặc định)
             const wb = XLSX.utils.book_new();
             const ws = XLSX.utils.json_to_sheet(output, { skipHeader: false });
             XLSX.utils.book_append_sheet(wb, ws, "Group_Mapping");
             XLSX.writeFile(wb, "Group_Mapping_Generated.xlsx");
         }
+
 
         meta.innerText = "Tạo file thành công!";
     });
