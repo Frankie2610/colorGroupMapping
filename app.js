@@ -76,12 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Xác định số ký tự để lấy làm prefix theo Vendor
             let prefixLength = 5; // mặc định
-            debugger;
             if (["VERSACE", "FERRAGAMO"].includes(vendor)) prefixLength = 4;
             else if (["PHILIPP PLEIN", "VERSUS BY VERSACE"].includes(vendor)) prefixLength = 5;
             else if (["TED BAKER", "MISSONI", "GUESS"].includes(vendor)) prefixLength = 6;
-            else if (vendor === "FURLA") prefixLength = 10;
+            else if (vendor === "ADIDAS") prefixLength = 7;
             else if (vendor === "LOCMAN") prefixLength = 8;
+            else if (vendor === "FURLA") prefixLength = 10;
 
             const skuPrefix = sku.substring(0, prefixLength);
             const optionId = skuPrefix;
