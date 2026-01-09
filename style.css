@@ -177,8 +177,13 @@ footer .designer {
 }
 
 .export-toggle label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 8px 18px;
   font-size: 14px;
+  line-height: 1;
   cursor: pointer;
   color: #555;
   background: transparent;
