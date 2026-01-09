@@ -115,7 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Tạo output, bỏ qua nhóm có <2 mẫu
         Object.keys(groups).forEach(prefix => {
             const g = groups[prefix];
-            // if (g.models.size < 2) return; // bỏ qua nhóm chỉ có 1 mẫu
+            // ❗ Không đủ 2 sản phẩm thì KHÔNG tạo group
+            if (g.values.length < 2) return;
 
             // Dòng 1
             output.push({
