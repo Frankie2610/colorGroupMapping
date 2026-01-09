@@ -163,3 +163,34 @@ footer .designer {
   font-weight: 600;
   color: var(--primary);
 }
+
+.export-toggle {
+  display: inline-flex;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.export-toggle input {
+  display: none;
+}
+
+.export-toggle label {
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #555;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.export-toggle input:checked + label {
+  background: #4f46e5;
+  color: #fff;
+  font-weight: 500;
+}
+
+.export-toggle label:hover {
+  background: #eaeaff;
+}

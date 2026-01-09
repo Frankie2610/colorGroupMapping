@@ -37,6 +37,25 @@
           <button id="processBtn" class="btn btn-primary">
             Tạo Group_Mapping.xlsx
           </button>
+          <div class="export-toggle">
+            <input
+              type="radio"
+              name="exportType"
+              id="exportCsv"
+              value="csv"
+              checked
+            />
+            <label for="exportCsv">CSV</label>
+
+            <input
+              type="radio"
+              name="exportType"
+              id="exportXlsx"
+              value="xlsx"
+            />
+            <label for="exportXlsx">XLSX</label>
+          </div>
+
           <button id="clearBtn" class="btn btn-outline">
             Xóa file đã chọn
           </button>
