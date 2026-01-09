@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (["VERSACE", "FERRAGAMO"].includes(vendor)) prefixLength = 4;
             else if (["PHILIPP PLEIN", "VERSUS BY VERSACE"].includes(vendor)) prefixLength = 5;
             else if (["TED BAKER", "MISSONI", "GUESS"].includes(vendor)) prefixLength = 6;
-            else if (vendor === "ADIDAS") prefixLength = 7;
+            else if (vendor === "ADIDAS") prefixLength = 8;
             else if (vendor === "LOCMAN") prefixLength = 8;
             else if (vendor === "FURLA") prefixLength = 10;
 
