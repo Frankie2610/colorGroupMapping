@@ -182,33 +182,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const output = [];
 
-        Object.values(groups).forEach(g => {
+        Object.keys(groups).forEach(prefix => {
+            const g = groups[prefix];
+            // ❗ Không đủ 2 sản phẩm thì KHÔNG tạo group
             if (g.values.length < 2) return;
 
+            // Dòng 1
             output.push({
                 "Group ID": g.groupId,
-                "Group Name": g.groupName
+                "Group Name": g.groupName,
+                "Product ID": "",
+                "Combination ID": "",
+                "Option ID": "",
+                "Option Name": "",
+                "Style On Page": "",
+                "Style On Card": "",
+                "Value ID": "",
+                "Value Name": "",
+                "Swatch Style": "",
+                "Swatch Color 1": "",
+                "Swatch Color 2": "",
+                "Swatch Image": ""
             });
 
+            // Dòng 2
             output.push({
                 "Group ID": g.groupId,
+                "Group Name": "",
+                "Product ID": "",
+                "Combination ID": "",
                 "Option ID": g.optionId,
                 "Option Name": "Màu sắc",
                 "Style On Page": "Image Swatch With Price",
-                "Style On Card": "Circle Swatch"
+                "Style On Card": "Circle Swatch",
+                "Value ID": "",
+                "Value Name": "",
+                "Swatch Style": "",
+                "Swatch Color 1": "",
+                "Swatch Color 2": "",
+                "Swatch Image": ""
             });
 
+            // Dòng 3+ (các giá trị)
             g.values.forEach(v => {
                 output.push({
                     "Group ID": g.groupId,
+                    "Group Name": "",
                     "Product ID": v.productId,
                     "Combination ID": v.sku,
+                    "Option ID": g.optionId,
+                    "Option Name": "",
+                    "Style On Page": "",
+                    "Style On Card": "",
                     "Value ID": v.sku,
                     "Value Name": v.color,
                     "Swatch Style": "First Image",
                     "Swatch Color 1": "",
                     "Swatch Color 2": "",
-                    "Swatch Image": "",
+                    "Swatch Image": ""
                 });
             });
         });
